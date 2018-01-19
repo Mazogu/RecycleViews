@@ -11,7 +11,15 @@ public class Celebrity {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.favorite = "1";
+        this.favorite = "0";
+        this.imageID = imageID;
+    }
+
+    public Celebrity(String name, String age, String gender, String favorite, String imageID) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.favorite = favorite;
         this.imageID = imageID;
     }
 

@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.example.micha.recyclecelebrities.data.DatabaseHandler;
 import com.example.micha.recyclecelebrities.data.LocalData;
 import com.example.micha.recyclecelebrities.model.Celebrity;
 
@@ -25,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         RecyclerView view = findViewById(R.id.celebList);
+        DatabaseHandler data = new DatabaseHandler(this);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
-        celebrities = LocalData.getCelebrity();
-        adapter = new CustomAdapter(celebrities);
+        celebrities = data.getAll();
+        adapter = new CustomAdapter(celebrities,this);
         view.setAdapter(adapter);
         view.setLayoutManager(manager);
-
-
 
 
         // TODO: 1/18/2018 Create overflow menu_items. Handle turning a list into a shared preference object, using putStringArray. Put only favorites in.
@@ -44,20 +43,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflate = getMenuInflater();
-        inflate.inflate(R.menu.menu_items,menu);
+        inflate.inflate(R.menu.menu_items, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.favorites){
-            Intent intent = new Intent(getApplicationContext(),FavoriteActivity.class);
-            startActivity(intent);
-        }
+
+        Intent intent = new Intent(getApplicationContext(), FavoriteActivity.class);
+        startActivity(intent);
+
         return true;
     }
 
-    public void favCeleb(View view) {
-
-    }
 }
