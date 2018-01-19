@@ -6,6 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.example.micha.recyclecelebrities.data.LocalData;
+import com.example.micha.recyclecelebrities.model.Celebrity;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +19,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        List<Celebrity> celebrities = LocalData.getCelebrity();
+        CustomAdapter adapter = new CustomAdapter(celebrities);
+
+
+
         // TODO: 1/18/2018 Create overflow menu_items. Handle turning a list into a shared preference object, using putStringArray. Put only favorites in.
         // TODO: 1/18/2018 Do remove from list and remember to call the adapter changed function.  
     }
@@ -33,5 +45,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    public void favCeleb(View view) {
+
     }
 }

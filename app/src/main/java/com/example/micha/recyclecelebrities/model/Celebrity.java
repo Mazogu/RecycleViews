@@ -5,13 +5,14 @@ package com.example.micha.recyclecelebrities.model;
  */
 
 public class Celebrity {
-    private String name,age,gender,favorite;
+    private String name,age,gender,favorite, imageID;
 
-    public Celebrity(String name, String age, String gender) {
+    public Celebrity(String name, String age, String gender, String imageID) {
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.favorite = "0";
+        this.imageID = imageID;
     }
 
     @Override
@@ -50,6 +51,14 @@ public class Celebrity {
 
     public String getFavorite() {
         return favorite;
+    }
+
+    public String getImageID(){
+        return imageID;
+    }
+
+    public void setImageID(String imageID){
+        this.imageID = imageID;
     }
 
     public void setFavorite(String favorite) {
