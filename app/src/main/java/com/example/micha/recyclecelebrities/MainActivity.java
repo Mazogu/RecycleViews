@@ -3,6 +3,8 @@ package com.example.micha.recyclecelebrities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,13 +17,20 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private List<Celebrity> celebrities;
+    private CustomAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView view = findViewById(R.id.celebList);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
+        celebrities = LocalData.getCelebrity();
+        adapter = new CustomAdapter(celebrities);
+        view.setAdapter(adapter);
+        view.setLayoutManager(manager);
 
-        List<Celebrity> celebrities = LocalData.getCelebrity();
-        CustomAdapter adapter = new CustomAdapter(celebrities);
 
 
 
@@ -29,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: 1/18/2018 Do remove from list and remember to call the adapter changed function.  
     }
     // TODO: 1/18/2018 Create necessary Recycle views and handlers.
+    // TODO: 1/19/2018 Finish Favorites page. Add Individual Celebrity pages.
 
 
     @Override

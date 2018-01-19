@@ -11,7 +11,7 @@ public class Celebrity {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.favorite = "0";
+        this.favorite = "1";
         this.imageID = imageID;
     }
 

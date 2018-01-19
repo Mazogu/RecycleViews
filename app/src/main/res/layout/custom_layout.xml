@@ -41,6 +41,9 @@
                 android:layout_weight="1"
                 android:id="@+id/favbtn"
                 android:layout_gravity="center"
+                android:padding="13dp"
+                android:scaleType="centerInside"
+                android:adjustViewBounds="true"
                 android:onClick="favCeleb"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
