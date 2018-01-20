@@ -20,8 +20,8 @@ import java.util.List;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CelebrityHolder> {
 
-    List<Celebrity> celebrities;
-    Context context;
+    private List<Celebrity> celebrities;
+    private Context context;
 
     public CustomAdapter(List<Celebrity> celebrities){
         this.celebrities = celebrities;
@@ -95,6 +95,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CelebrityH
             thumbnail = itemView.findViewById(R.id.celebImage);
         }
 
+    }
+
+    public List<Celebrity> getCelebrities() {
+        return celebrities;
     }
 
 }

@@ -25,9 +25,9 @@ public class FavoriteActivity extends AppCompatActivity {
         List<Celebrity> start = LocalData.getCelebrity();
         DatabaseHandler data = new DatabaseHandler(this);
         List<Celebrity> favorites = data.getFavorites();
-        SwipeHelper swiping = new SwipeHelper();
-        ItemTouchHelper itemtouch = new ItemTouchHelper(swiping);
         CustomAdapter custom = new CustomAdapter(favorites);
+        SwipeHelper swiping = new SwipeHelper(custom,this);
+        ItemTouchHelper itemtouch = new ItemTouchHelper(swiping);
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         list.setLayoutManager(manager);
         list.setAdapter(custom);
