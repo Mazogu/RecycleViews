@@ -34,7 +34,7 @@ public class SwipeHelper extends ItemTouchHelper.Callback {
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         return makeMovementFlags(UP|DOWN, LEFT|RIGHT);
     }
-    
+
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
         final int initialPosition = viewHolder.getAdapterPosition();
