@@ -8,6 +8,10 @@ import com.example.micha.recyclecelebrities.data.DatabaseContract;
 import com.example.micha.recyclecelebrities.data.DatabaseHandler;
 import com.example.micha.recyclecelebrities.model.Celebrity;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 import static android.support.v7.widget.helper.ItemTouchHelper.DOWN;
 import static android.support.v7.widget.helper.ItemTouchHelper.LEFT;
 import static android.support.v7.widget.helper.ItemTouchHelper.RIGHT;
@@ -30,10 +34,27 @@ public class SwipeHelper extends ItemTouchHelper.Callback {
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         return makeMovementFlags(UP|DOWN, LEFT|RIGHT);
     }
-
+    
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        return false;
+        final int initialPosition = viewHolder.getAdapterPosition();
+        final int nextPosition = target.getAdapterPosition();
+        List<Celebrity> list = adapter.getCelebrities();
+        Celebrity moveCelebrity = list.get(initialPosition);
+        if(initialPosition > nextPosition){
+            for(int i = initialPosition; i > nextPosition; i--){
+                Collections.swap(list,i,i-1);
+            }
+        }
+        else{
+            if(initialPosition < nextPosition){
+                for (int i = initialPosition; i < nextPosition ; i++) {
+                    Collections.swap(list,i,i++);
+                }
+            }
+        }
+        adapter.notifyItemMoved(initialPosition,nextPosition);
+        return true;
     }
 
     @Override
@@ -47,6 +68,5 @@ public class SwipeHelper extends ItemTouchHelper.Callback {
             db.update(celebrity);
             adapter.notifyItemRemoved(position);
         }
-
     }
 }
